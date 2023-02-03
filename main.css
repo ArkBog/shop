@@ -169,17 +169,9 @@ a {
   background: var(--main-color);
   opacity: .7;
 }
-.pagination-button:hover{
+.active, .pagination-button:hover{
   cursor: pointer;
-}
-.pagination-button:focus{
-  border: 2px solid var(--secondary-color);
-}
-.pagination-button-sel{
-  border: 2px solid var(--secondary-color);
-}
-.pagination-button-sel:focus{
-  border: 2px solid var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 .prev {
   position: absolute;
@@ -211,6 +203,10 @@ a {
   overflow: hidden;
   transition: var(--tran3s);
   display: none;
+}
+.slide-change{
+  animation-name: slide-change;
+  animation-duration: .5s
 }
 .active{
   display: block;
@@ -420,3 +416,8 @@ footer {
 .me a:hover {
   color: var(--secondary-color);
 }
+@keyframes slide-change {
+  from {left: 100%} 
+  to {left: 0%}
+}
+

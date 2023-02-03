@@ -54,11 +54,15 @@
     </nav>
     <header>
       <section class="slider">
-        <div class="prev"><</div>
-        <div class="next">></div>
+        <div class="prev" onclick="plusSlides(-1)"><</div>
+        <div class="next" onclick="plusSlides(1)">></div>
         <div class="pagination">
+            <span class="pagination-button" onclick="currentSlide(1)"></span> 
+            <span class="pagination-button" onclick="currentSlide(2)"></span> 
+            <span class="pagination-button" onclick="currentSlide(3)"></span> 
+          </div>
         </div>
-        <div class="slide active">
+        <div class="slide">
           <a href="newin.html"
             ><div class="overlay">Check our new brands</div></a
           >

@@ -8,49 +8,35 @@ function displayLogin(){
 
 login.addEventListener('click', displayLogin);
 
+
+
 //slider
-let currentIndex = 0;
-let newIndex = 0;
+let slideIndex = 1;
+showSlides(slideIndex);
 
-const slideElements = document.getElementsByClassName('slide');
-const slidesLength = slideElements.length;
-let paginationElement = document.getElementsByClassName('pagination')[0];
-const next = document.querySelector('.next');
-const prev = document.querySelector('.prev');
-
-function navigateSlider() {
-   if (newIndex === -1) {
-      newIndex = slidesLength - 1;
-   }
-   else if (newIndex === slidesLength) {
-      newIndex = 0;
-   };
-   
-
-   slideElements[newIndex].style.display = "block";
-   slideElements[currentIndex].style.display = "none";
-   currentIndex = newIndex;
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
 }
 
-prev.addEventListener('click', function() {
-   newIndex--;
-   navigateSlider();
-});
-
-next.addEventListener('click', function() {
-   newIndex++;
-   navigateSlider();
-});
-
-const paginationHTML = [];
-for (let i = 0; i < slidesLength; i++){
-   paginationHTML.push('<button class="pagination-button" data-index ="' + i + '"></button>');
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
 }
-paginationElement.innerHTML = paginationHTML.join('');
-paginationElement.addEventListener('click', function(e){
-   let target = e.target;
-   if(target.classList.contains('pagination-button')){
-      newIndex = Number(target.getAttribute("data-index"));
-      navigateSlider();
-   }
-});
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("slide");
+  let dots = document.getElementsByClassName("pagination-button");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  slides[slideIndex-1].classList.add('slide-change');
+}
